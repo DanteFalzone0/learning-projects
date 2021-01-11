@@ -5,7 +5,7 @@ import pygame
 class IntermediateGuiLayer:
     def __init__(self):
         pygame.init()
-        self._pygame_display       = pygame.display.set_mode([500, 500])
+        self._pygame_display = pygame.display.set_mode([500, 500])
         self._continuing_main_loop = True
 
     def quit_game(self):
@@ -20,7 +20,7 @@ class IntermediateGuiLayer:
 
             # fill in the window with a single color
             self._pygame_display.fill(
-                (30, 30, 30) # RGB color
+                (20, 20, 20) # RGB color
             )
 
             pygame.draw.circle(
