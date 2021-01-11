@@ -1,29 +1,57 @@
 #!/usr/bin/env python3
-import tkinter as tk
-
-class IntermediateGuiLayer(tk.Frame):
-    def __init__(self, master=None):
-        super().__init__(master)
-        self.master = master
-        self.pack()
-        self.create_widgets()
-
-    def create_widgets(self):
-        self.hi_there = tk.Button(self)
-        self.hi_there["text"] = "Hello World\n(click me)"
-        self.hi_there["command"] = self.say_hi
-        self.hi_there.pack(side="top")
-
-        self.quit = tk.Button(self, text="QUIT", fg="red",
-                              command=self.master.destroy)
-        self.quit.pack(side="bottom")
+import pygame
 
 
-    def say_hi(self):
-        print("hi there, everyone!")
+class IntermediateGuiLayer:
+    def __init__(self):
+        pygame.init()
+        self._pygame_display       = pygame.display.set_mode([500, 500])
+        self._continuing_main_loop = True
+
+    def quit_game(self):
+        self._continuing_main_loop = False
+        pygame.quit()
+
+    def start_main_loop(self):
+        while self._continuing_main_loop:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.quit_game()
+
+            # fill in the window with a single color
+            self._pygame_display.fill(
+                (30, 30, 30) # RGB color
+            )
+
+            pygame.draw.circle(
+                self._pygame_display,
+                (0, 255, 80), # RGB color
+                (250, 250), # coordinates of the center of the circle (pixels)
+                75 # radius of the circle (pixels)
+            )
+            pygame.display.flip()
+
+
+class KeyRelay:
+    # TODO
+    pass
+
+
+class Ship:
+    # TODO
+    pass
+
+
+class Battlefield:
+    # TODO
+    pass
+
+
+class Displayer:
+    # TODO
+    pass
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = IntermediateGuiLayer(master=root)
-    app.mainloop()
+    intermediate_gui_layer = IntermediateGuiLayer()
+    intermediate_gui_layer.start_main_loop()
