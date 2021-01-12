@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# A very simple and fun videogame in one file.
 import pygame
 
 
@@ -53,5 +54,9 @@ class Displayer:
 
 
 if __name__ == "__main__":
-    intermediate_gui_layer = IntermediateGuiLayer()
-    intermediate_gui_layer.start_main_loop()
+    # This dict will contain all the objects.
+    game = {
+        "intermediate_gui_layer": IntermediateGuiLayer(),
+    }
+
+    game["intermediate_gui_layer"].start_main_loop()
