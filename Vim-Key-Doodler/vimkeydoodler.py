@@ -18,7 +18,10 @@ class IntermediateGuiLayer:
 
     def show_pixel(self, x, y, char):
         # char must be one of the following: " ", "0", "1"
-        self._pixels[x][y] = char
+        try:
+            self._pixels[x][y] = char
+        except IndexError:
+            pass
 
     def refresh_display(self):
         # fill in the window with a single color
@@ -66,20 +69,28 @@ class KeyRelay:
         self._drawing_point = drawing_point
 
     def press_h(self):
-        if self._drawing_point.x_position > 0:
+        if self._drawing_point.x_position > -1:
             self._drawing_point.move_left()
+        else:
+            self._drawing_point.x_position = 50
 
     def press_j(self):
         if self._drawing_point.y_position < 50:
             self._drawing_point.move_down()
+        else:
+            self._drawing_point.y_position = 0
 
     def press_k(self):
-        if self._drawing_point.y_position > 0:
+        if self._drawing_point.y_position > -1:
             self._drawing_point.move_up()
+        else:
+            self._drawing_point.y_position = 50
 
     def press_l(self):
         if self._drawing_point.x_position < 50:
             self._drawing_point.move_right()
+        else:
+            self._drawing_point.x_position = 0
 
 
 # This class represents the point being moved around on the canvas. It stores the x and y
